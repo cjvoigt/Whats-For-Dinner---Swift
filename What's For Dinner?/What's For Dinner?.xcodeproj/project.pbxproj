@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		58EB5E2A1B2A809B0063FBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5E291B2A809B0063FBEC /* AppDelegate.swift */; };
-		58EB5E2C1B2A809B0063FBEC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5E2B1B2A809B0063FBEC /* FirstViewController.swift */; };
+		58EB5E2C1B2A809B0063FBEC /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5E2B1B2A809B0063FBEC /* WeeklyViewController.swift */; };
 		58EB5E2E1B2A809B0063FBEC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5E2D1B2A809B0063FBEC /* SecondViewController.swift */; };
 		58EB5E311B2A809B0063FBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E2F1B2A809B0063FBEC /* Main.storyboard */; };
 		58EB5E331B2A809B0063FBEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E321B2A809B0063FBEC /* Images.xcassets */; };
@@ -30,7 +30,7 @@
 		58EB5E241B2A809B0063FBEC /* What's For Dinner?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's For Dinner?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EB5E281B2A809B0063FBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58EB5E291B2A809B0063FBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		58EB5E2B1B2A809B0063FBEC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		58EB5E2B1B2A809B0063FBEC /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
 		58EB5E2D1B2A809B0063FBEC /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		58EB5E301B2A809B0063FBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		58EB5E321B2A809B0063FBEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				58EB5E291B2A809B0063FBEC /* AppDelegate.swift */,
-				58EB5E2B1B2A809B0063FBEC /* FirstViewController.swift */,
+				58EB5E2B1B2A809B0063FBEC /* WeeklyViewController.swift */,
 				58EB5E2D1B2A809B0063FBEC /* SecondViewController.swift */,
 				58EB5E2F1B2A809B0063FBEC /* Main.storyboard */,
 				58EB5E321B2A809B0063FBEC /* Images.xcassets */,
@@ -217,7 +217,7 @@
 			files = (
 				58EB5E2E1B2A809B0063FBEC /* SecondViewController.swift in Sources */,
 				58EB5E2A1B2A809B0063FBEC /* AppDelegate.swift in Sources */,
-				58EB5E2C1B2A809B0063FBEC /* FirstViewController.swift in Sources */,
+				58EB5E2C1B2A809B0063FBEC /* WeeklyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +415,7 @@
 				58EB5E471B2A809B0063FBEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58EB5E481B2A809B0063FBEC /* Build configuration list for PBXNativeTarget "What's For Dinner?Tests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +424,7 @@
 				58EB5E4A1B2A809B0063FBEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
