@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddMealViewController: UIViewController : UITableViewDelegate {
+class AddMealViewController: UIViewController, UITableViewDelegate {
     
     // MARK: IBOutlets
     
