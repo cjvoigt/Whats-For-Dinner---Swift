@@ -14,6 +14,7 @@
 		58470D061B3860F90067724E /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58470D041B3860F90067724E /* WeeklyViewController.swift */; };
 		58470D091B3861320067724E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58470D081B3861320067724E /* AppDelegate.swift */; };
 		58470D0C1B3861720067724E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58470D0B1B3861720067724E /* Info.plist */; };
+		58470D151B38A1E60067724E /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58470D141B38A1E60067724E /* AddIngredientViewController.swift */; };
 		58EB5E311B2A809B0063FBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E2F1B2A809B0063FBEC /* Main.storyboard */; };
 		58EB5E331B2A809B0063FBEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E321B2A809B0063FBEC /* Images.xcassets */; };
 		58EB5E361B2A809B0063FBEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E341B2A809B0063FBEC /* LaunchScreen.xib */; };
@@ -38,6 +39,7 @@
 		58470D041B3860F90067724E /* WeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeeklyViewController.swift; path = Controllers/WeeklyViewController.swift; sourceTree = "<group>"; };
 		58470D081B3861320067724E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate/AppDelegate.swift; sourceTree = "<group>"; };
 		58470D0B1B3861720067724E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
+		58470D141B38A1E60067724E /* AddIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
 		58EB5E241B2A809B0063FBEC /* What's For Dinner?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's For Dinner?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EB5E301B2A809B0063FBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		58EB5E321B2A809B0063FBEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -78,8 +80,9 @@
 		58470D021B3860DB0067724E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				58470D031B3860F90067724E /* AddMealViewController.swift */,
 				58470D041B3860F90067724E /* WeeklyViewController.swift */,
+				58470D031B3860F90067724E /* AddMealViewController.swift */,
+				58470D141B38A1E60067724E /* AddIngredientViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				58470D001B3860C40067724E /* Meal.swift in Sources */,
 				58470D051B3860F90067724E /* AddMealViewController.swift in Sources */,
 				58470CFF1B3860C40067724E /* Ingredient.swift in Sources */,
+				58470D151B38A1E60067724E /* AddIngredientViewController.swift in Sources */,
 				58470D061B3860F90067724E /* WeeklyViewController.swift in Sources */,
 				58470D011B3860C40067724E /* MealList.swift in Sources */,
 			);

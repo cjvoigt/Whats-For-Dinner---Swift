@@ -8,14 +8,15 @@
 
 import UIKit
 
-class AddMealViewController: UIViewController, UITableViewDelegate {
+class AddMealViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: IBOutlets
     
     @IBOutlet weak var nameTextBox: UITextField!
-    @IBOutlet weak var descriptionTextBox: UITextField!
+    @IBOutlet weak var descriptionTextBox: UITextView!
     @IBOutlet weak var caloriesTextBox: UITextField!
     @IBOutlet weak var priceTextBox: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Instance Variables
     
@@ -25,14 +26,11 @@ class AddMealViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        configureDescriptionTextField()
+        addBarButtonItem()
+        tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: IBActions
     
     @IBAction func addMeal(sender: AnyObject) {
@@ -43,7 +41,63 @@ class AddMealViewController: UIViewController, UITableViewDelegate {
              ingredientsList: nil)
         var mealList = MealList()
         mealList.addMeal(meal)
+        
+        nameTextBox.text = ""
+        descriptionTextBox.text = ""
+        caloriesTextBox.text = ""
+        priceTextBox.text = ""
     }
     
+    // MARK: UITableView Data Source
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell : AnyObject? = tableView.dequeueReusableCellWithIdentifier("IngredientCells")
+        if let cell: AnyObject = cell {
+            let ingredientNameLabel = cell.viewWithTag(101) as! UILabel
+            ingredientNameLabel.text = ingredientsList[indexPath.row].name
+            
+            let ingredientDetailsLabel = cell.viewWithTag(102) as! UILabel
+            ingredientDetailsLabel.text = ingredientsList[indexPath.row].description
+            
+            let ingredientCaloriesLabel = cell.viewWithTag(103) as! UILabel
+            ingredientCaloriesLabel.text = "\(ingredientsList[indexPath.row].calories)"
+            
+            let ingredientPriceLabel = cell.viewWithTag(104) as! UILabel
+            ingredientPriceLabel.text = "\(ingredientsList[indexPath.row].price)"
+            
+            return cell as! UITableViewCell
+        }
+        return cell as! UITableViewCell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredientsList.count
+    }
+    
+    //MARK: Private API
+    
+    func configureDescriptionTextField() {
+        descriptionTextBox.layer.borderWidth = 1
+        descriptionTextBox.layer.borderColor = UIColor.lightGrayColor().CGColor
+    }
+    
+    //MARK: Bar Button Item
+    
+    func addBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Ingredient", style: .Plain, target: self, action: "moveToAddIngredientView")
+    }
+    
+    func moveToAddIngredientView() {
+        performSegueWithIdentifier("AddMealToAddIngredient", sender: self)
+    }
+    
+    // MARK: Segue Methods
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AddMealToAddIngredient" {
+            var ingredientView = segue.destinationViewController as! AddIngredientViewController
+            ingredientView.mealViewController = self
+        }
+    }
 }
 
