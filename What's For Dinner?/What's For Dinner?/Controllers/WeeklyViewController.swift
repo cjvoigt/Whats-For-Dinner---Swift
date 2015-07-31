@@ -37,7 +37,7 @@ class WeeklyTableViewController: UITableViewController {
         formatter.dateFormat = "yyyy-MM-dd"
         if let todayDate = formatter.dateFromString(today) {
             let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            let myComponents = myCalendar.components(.CalendarUnitWeekday, fromDate: todayDate)
+            let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
             let weekDay = myComponents.weekday
             return weekDay
         } else {
@@ -65,7 +65,7 @@ extension WeeklyTableViewController {
         let cell : AnyObject = tableView.dequeueReusableCellWithIdentifier("WeeklyViewCells", forIndexPath: indexPath)
         
         cell.textLabel!!.text = cellTextLabel(getIntegerForDayOfWeek(getStringForDayOfWeek(NSDate().xDays(indexPath.row))!)!)
-        if  let list = MealList.mealList {
+        if  let _ = MealList.mealList {
             cell.detailTextLabel!!.text = "Meal"
         }
         
@@ -93,8 +93,6 @@ extension WeeklyTableViewController {
                 return "Friday"
             case .Saturday:
                 return "Saturday"
-            default:
-                return "Day"
             }
         }
         
@@ -107,7 +105,7 @@ extension WeeklyTableViewController {
 
 extension NSDate {
     func xDays(x:Int) -> NSDate {
-        return NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: x, toDate: self, options: nil)!
+        return NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: x, toDate: self, options: [])!
     }
 }
 

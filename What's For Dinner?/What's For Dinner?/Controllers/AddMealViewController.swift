@@ -34,12 +34,12 @@ class AddMealViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: IBActions
     
     @IBAction func addMeal(sender: AnyObject) {
-        let meal = Meal(name: nameTextBox.text,
+        let meal = Meal(name: nameTextBox.text!,
                  description: descriptionTextBox.text,
-                       price: (priceTextBox.text as NSString).doubleValue,
-                    calories: (caloriesTextBox.text as NSString).integerValue,
+                       price: NSString(string: priceTextBox.text!).doubleValue,
+                    calories: NSString(string: caloriesTextBox.text!).integerValue,
              ingredientsList: nil)
-        var mealList = MealList()
+        let mealList = MealList()
         mealList.addMeal(meal)
         
         nameTextBox.text = ""
@@ -95,7 +95,7 @@ class AddMealViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddMealToAddIngredient" {
-            var ingredientView = segue.destinationViewController as! AddIngredientViewController
+            let ingredientView = segue.destinationViewController as! AddIngredientViewController
             ingredientView.mealViewController = self
         }
     }

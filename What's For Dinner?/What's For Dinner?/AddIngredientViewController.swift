@@ -24,10 +24,10 @@ class AddIngredientViewController: UIViewController {
     //MARK: IBActions
     
     @IBAction func addIngredient(sender: AnyObject) {
-        var ingredient = Ingredient(name: nameTextBox.text,
-                             description: descriptionTextBox.text,
-                                   price: (priceTextBox.text as NSString).doubleValue,
-                                calories: (caloriesTextBox.text as NSString).integerValue)
+        let ingredient = Ingredient(name: nameTextBox.text!,
+                             description: descriptionTextBox.text!,
+                                   price: NSString(string: priceTextBox.text!).doubleValue,
+                                calories: NSString(string: caloriesTextBox.text!).integerValue)
         if let mealController = mealViewController {
             mealController.ingredientsList.append(ingredient)
         }

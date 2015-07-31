@@ -17,7 +17,7 @@ class MealList{
     // MARK: Object Life Cycle
     
     init(){
-        if let list = MealList.mealList {
+        if let _ = MealList.mealList {
             return
         } else {
             MealList.mealList = Array()
@@ -25,7 +25,7 @@ class MealList{
     }
     
     init(mealList:[Meal]){
-        if let list = MealList.mealList {
+        if let _ = MealList.mealList {
             return
         } else {
             MealList.mealList = mealList
@@ -35,7 +35,7 @@ class MealList{
     //MARK: Public Methods
     
     func addMeal(meal:Meal){
-        if let list = MealList.mealList {
+        if let _ = MealList.mealList {
             MealList.mealList!.append(meal)
         }
     }
