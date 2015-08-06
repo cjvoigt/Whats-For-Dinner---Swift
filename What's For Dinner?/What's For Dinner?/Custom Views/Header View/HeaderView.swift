@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HeaderView: UIView{
+@IBDesignable class HeaderView: UIView{
+    
+    //TODO: Fix Xib so things resize correctly
     
     //MARK: IBOutlets
     
@@ -16,17 +18,17 @@ class HeaderView: UIView{
     var view: UIView!
     
     //Image
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet @IBInspectable weak var imageView: UIImageView!
     
     //TextFields
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var middleTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet @IBInspectable weak var topTextField: UITextField!
+    @IBOutlet @IBInspectable weak var middleTextField: UITextField!
+    @IBOutlet @IBInspectable weak var bottomTextField: UITextField!
     
     //Labels
-    @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var middleLabel: UILabel!
-    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet @IBInspectable weak var topLabel: UILabel!
+    @IBOutlet @IBInspectable weak var middleLabel: UILabel!
+    @IBOutlet @IBInspectable weak var bottomLabel: UILabel!
     
     
     //MARK: Properties
@@ -40,6 +42,7 @@ class HeaderView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
+        topTextField.placeholder = ""
         fillTextFields()
         fillLabels()
     }
@@ -47,6 +50,7 @@ class HeaderView: UIView{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
+        topTextField.placeholder = ""
         fillTextFields()
         fillLabels()
     }
@@ -95,8 +99,8 @@ class HeaderView: UIView{
         }
         
         for var i = 0; i < 3; i++ {
-            labels[i].text = dataSource?.headerView2(self, index: i)
-            textFields[i].text = dataSource?.headerView(self, textFieldDataForIndex: i)
+            labels[i].text = dataSource?.headerView(self, labelDataForIndex: i)
+            textFields[i].placeholder = dataSource?.headerView(self, labelDataForIndex: i)
         }
     }
 }

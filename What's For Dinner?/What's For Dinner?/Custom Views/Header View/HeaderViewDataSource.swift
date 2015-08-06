@@ -8,11 +8,12 @@
 
 import UIKit
 
-protocol HeaderViewDataSource: NSObjectProtocol {
+
+@objc protocol HeaderViewDataSource: NSObjectProtocol {
     func imageDataForHeaderView(headerView: HeaderView) -> UIImage?
     
-    func headerView(headerView: HeaderView, textFieldDataForIndex index: Int) -> String
-    
-    func headerView2(headerView: HeaderView, index: Int) -> String
+    func headerView(headerView: HeaderView, labelDataForIndex index: Int) -> String
+
+    optional func setHeaderView(headerView: HeaderView, textFieldDataForIndex index: Int) -> String
 }
 
