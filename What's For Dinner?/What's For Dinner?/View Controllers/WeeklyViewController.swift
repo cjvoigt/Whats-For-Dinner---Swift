@@ -62,14 +62,14 @@ class WeeklyTableViewController: UITableViewController {
     
 extension WeeklyTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : AnyObject = tableView.dequeueReusableCellWithIdentifier("WeeklyViewCells", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("WeeklyViewCells", forIndexPath: indexPath)
         
-        cell.textLabel!!.text = cellTextLabel(getIntegerForDayOfWeek(getStringForDayOfWeek(NSDate().xDays(indexPath.row))!)!)
+        cell.textLabel!.text = cellTextLabel(getIntegerForDayOfWeek(getStringForDayOfWeek(NSDate().xDays(indexPath.row))!)!)
         if  let _ = MealList.mealList {
-            cell.detailTextLabel!!.text = "Meal"
+            cell.detailTextLabel!.text = "Meal"
         }
         
-        return cell as! UITableViewCell
+        return cell
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
