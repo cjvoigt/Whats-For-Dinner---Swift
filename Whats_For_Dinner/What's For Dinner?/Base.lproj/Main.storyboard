@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+    </dependencies>
+    <scenes>
+        <!--Your Meals-->
+        <scene sceneID="gaI-qV-nfQ">
+            <objects>
+                <tableViewController id="jIG-VX-PpY" customClass="AllMealsViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kcT-5m-gel">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allMealsCell" id="XiK-UU-008">
+                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XiK-UU-008" id="The-FX-wFC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jIG-VX-PpY" id="QA7-qx-tic"/>
+                            <outlet property="delegate" destination="jIG-VX-PpY" id="A8q-RJ-8cZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Your Meals" id="P5K-FH-sjj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qv6-a0-Ff5">
+                            <connections>
+                                <action selector="addMeal:" destination="jIG-VX-PpY" id="lWh-My-0MZ"/>
+                                <segue destination="8OZ-z6-8Qk" kind="show" identifier="AllMealsToMealDirections" id="gWc-Nx-fzg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8W-G7-kOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1422" y="418"/>
+        </scene>
+        <!--Meal Directions View Controller-->
+        <scene sceneID="GqH-6c-tsU">
+            <objects>
+                <tableViewController id="8OZ-z6-8Qk" customClass="MealDirectionsViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NmF-A3-lWS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mealDirectionCell" id="RVq-2b-rvw">
+                                <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVq-2b-rvw" id="FN1-Ie-Wok">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8OZ-z6-8Qk" id="Q0s-3i-U5j"/>
+                            <outlet property="delegate" destination="8OZ-z6-8Qk" id="Myl-kr-I99"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" prompt="Create a Meal" id="DhP-5z-KHj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="f5Q-J9-DyF">
+                            <connections>
+                                <action selector="saveMeal:" destination="8OZ-z6-8Qk" id="Ldj-H8-Dcg"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="xgL-ak-g5m">
+                            <rect key="frame" x="180" y="37" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Directions"/>
+                                <segment title="Ingredients"/>
+                            </segments>
+                            <connections>
+                                <action selector="switchToIngredientsView:" destination="8OZ-z6-8Qk" eventType="valueChanged" id="Hbx-CH-nHC"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pb1-t4-T5L">
+                            <connections>
+                                <action selector="addDirections:" destination="8OZ-z6-8Qk" id="tWX-Hu-akk"/>
+                                <segue destination="yVV-qJ-zZ7" kind="show" identifier="MealDirectionsToAddMealDirection" id="HfA-th-Y2y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="viewSelector" destination="xgL-ak-g5m" id="0OA-bO-kJj"/>
+                        <segue destination="x06-MB-tOZ" kind="show" identifier="MealDirectionsToMealIngredients" id="8pu-2S-nTS"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcf-2r-SYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1422" y="1151"/>
+        </scene>
+        <!--Add Direction-->
+        <scene sceneID="ATc-SY-iLt">
+            <objects>
+                <viewController id="yVV-qJ-zZ7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nvT-zU-qUN"/>
+                        <viewControllerLayoutGuide type="bottom" id="n4o-d6-S4c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wz7-PG-rG0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make This View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db2-lL-Grd">
+                                <rect key="frame" x="217" y="274" width="167" height="52"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Direction" id="OwT-Mv-ySU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KnI-zl-8w0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="1151"/>
+        </scene>
+        <!--Meal Ingredeints View Controller-->
+        <scene sceneID="9lW-X8-rXb">
+            <objects>
+                <tableViewController id="x06-MB-tOZ" customClass="MealIngredeintsViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yqy-Y8-X8q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mealIngredientCells" id="vCm-6A-3cq">
+                                <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vCm-6A-3cq" id="W3d-2X-tK5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x06-MB-tOZ" id="1cq-9r-PKI"/>
+                            <outlet property="delegate" destination="x06-MB-tOZ" id="Ar7-RN-Vck"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" prompt="Create a Meal" id="YEJ-jr-RK1">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="vrb-vf-75a">
+                            <connections>
+                                <action selector="saveMeal:" destination="x06-MB-tOZ" id="DB6-wq-PNQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ty5-dj-RJH">
+                            <rect key="frame" x="180" y="37" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Directions"/>
+                                <segment title="Ingredients"/>
+                            </segments>
+                            <connections>
+                                <action selector="switchToDirectionsView:" destination="x06-MB-tOZ" eventType="valueChanged" id="OTd-Qg-01A"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dyA-o4-bj1">
+                            <connections>
+                                <action selector="addIngredients:" destination="x06-MB-tOZ" id="nhY-nX-Htl"/>
+                                <segue destination="9eD-cb-KCu" kind="show" identifier="MealIngredientsToAddMealIngredient" id="wor-FU-KeI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="viewSelctor" destination="ty5-dj-RJH" id="DCJ-xA-wkc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yBJ-Qc-Bhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1422" y="1871"/>
+        </scene>
+        <!--Add Ingredient-->
+        <scene sceneID="j6p-hv-Dby">
+            <objects>
+                <viewController id="9eD-cb-KCu" customClass="AddIngredientViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MRJ-RJ-Fgg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Teq-2p-UYm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PTV-dx-CfX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make This View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAf-9G-bhr">
+                                <rect key="frame" x="232" y="277" width="136" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Ingredient" id="6Kw-n5-EIh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jne-WV-DHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="1871"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="NB9-Zb-m2M" kind="relationship" relationship="viewControllers" id="6D0-aj-klV"/>
+                        <segue destination="uVA-Pu-Ixs" kind="relationship" relationship="viewControllers" id="eHz-AN-jaA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--WeeklyView-->
+        <scene sceneID="IDa-9A-d8H">
+            <objects>
+                <tableViewController id="NB9-Zb-m2M" customClass="WeeklyTableViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="22" sectionFooterHeight="22" id="RAB-DL-eI9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeeklyViewCells" textLabel="PnX-ql-JoV" detailTextLabel="aLe-U7-645" rowHeight="108" style="IBUITableViewCellStyleValue2" id="Ffb-pO-Z79">
+                                <rect key="frame" x="0.0" y="22" width="600" height="108"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ffb-pO-Z79" id="QwK-Fa-jVU">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PnX-ql-JoV">
+                                            <rect key="frame" x="15" y="46" width="91" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aLe-U7-645">
+                                            <rect key="frame" x="112" y="46" width="33" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="NB9-Zb-m2M" id="sB7-3l-aaJ"/>
+                            <outlet property="delegate" destination="NB9-Zb-m2M" id="cin-nh-5O9"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" tag="1" title="WeeklyView" image="first" selectedImage="first" id="zqC-qJ-cFg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mY8-zD-Rgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-293"/>
+        </scene>
+        <!--Add Meal-->
+        <scene sceneID="iFU-Gb-rIs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uVA-Pu-Ixs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Add Meal" image="second" selectedImage="second" id="dPl-1i-u7u"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HRX-ge-4jR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uQA-Yf-L1O">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="jIG-VX-PpY" kind="relationship" relationship="rootViewController" id="R5X-Wh-66V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpV-yg-dhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="418"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>
