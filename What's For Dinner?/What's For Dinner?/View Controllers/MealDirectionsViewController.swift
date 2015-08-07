@@ -88,9 +88,9 @@ class MealDirectionsViewController: UITableViewController, HeaderViewDataSource 
         if segue.identifier == "MealDirectionsToMealIngredients" {
             let mealIngredients = segue.destinationViewController as! MealIngredeintsViewController
             mealIngredients.headerView = headerView
-            print("MealDirectionsToMealIngredients")
+            print("MealDirectionsToMealIngredients", appendNewline: false)
         } else if segue.identifier == "MealDirectionsToAddMealDirection" {
-            print("MealDirectionsToAddMealDirection")
+            print("MealDirectionsToAddMealDirection", appendNewline: false)
         }
     }
     

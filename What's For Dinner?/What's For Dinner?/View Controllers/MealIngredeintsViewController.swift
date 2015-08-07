@@ -35,7 +35,7 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     
     @IBAction func switchToDirectionsView(sender: AnyObject) {
        navigationController?.popViewControllerAnimated(true)
-        print("MealIngredientsToMealDiirections")
+        print("MealIngredientsToMealDiirections", appendNewline: false)
     }
     
     @IBAction func addIngredients(sender: AnyObject) {
@@ -88,9 +88,9 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MealIngredientsToMealDirections" {
-            print("MealIngredientsToMealDiirections")
+            print("MealIngredientsToMealDiirections", appendNewline: false)
         } else if segue.identifier == "MealIngredientsToAddMealIngredient" {
-            print("MealIngredientsToAddMealIngredient")
+            print("MealIngredientsToAddMealIngredient", appendNewline: false)
         }
     }
     
