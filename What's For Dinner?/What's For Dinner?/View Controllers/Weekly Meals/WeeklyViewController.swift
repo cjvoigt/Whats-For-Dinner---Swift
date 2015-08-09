@@ -12,9 +12,11 @@ enum Weekdays : Int {
     case Sunday = 1, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 }
 
+//TODO: Redo this class to confrom to standards that you have made up in your head.
+
 class WeeklyTableViewController: UITableViewController {
 
-// MARK: View Life Cycle
+    // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +24,8 @@ class WeeklyTableViewController: UITableViewController {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.reloadData()
     }
-
-// MARK: View Memory Management
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-// MARK: Date Methods
+    // MARK: Date Methods
 
     func getIntegerForDayOfWeek(today:String)->Int? {
         let formatter  = NSDateFormatter()
@@ -58,16 +53,14 @@ class WeeklyTableViewController: UITableViewController {
     }
 }
 
-// MARK: TableView Extension
+    // MARK: TableView Extension
     
 extension WeeklyTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("WeeklyViewCells", forIndexPath: indexPath)
         
         cell.textLabel!.text = cellTextLabel(getIntegerForDayOfWeek(getStringForDayOfWeek(NSDate().xDays(indexPath.row))!)!)
-        if  let _ = MealList.mealList {
-            cell.detailTextLabel!.text = "Meal"
-        }
+        cell.detailTextLabel!.text = "Meal"
         
         return cell
     }

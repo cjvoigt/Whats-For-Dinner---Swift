@@ -10,6 +10,7 @@ import UIKit
 
 class AllMealsViewController: UITableViewController {
 
+
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
@@ -32,14 +33,31 @@ class AllMealsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("allMealsCell", forIndexPath: indexPath)
 
-        // Configure the cell...
-
+        //TODO: Make Sure this works.
+        
         return cell
     }
     
     //MARK: IBActions
     
     @IBAction func addMeal(sender: AnyObject) {
+        showAlertView()
+    }
+    
+    //MARK: Private API
+    
+    private func showAlertView() {
+        let ac = UIAlertController(title: "Create a Meal", message: "Would you like to find a recipe online or create one manually?", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Manual", style: .Default, handler: showCreateMealViewController))
+        ac.addAction(UIAlertAction(title: "Online", style: .Default, handler: showOnlineMealsViewController))
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    private func showOnlineMealsViewController(action: UIAlertAction!) {
+        performSegueWithIdentifier("AllMealsToOnlineMeals", sender: self)
+    }
+    
+    private func showCreateMealViewController(action: UIAlertAction!) {
         performSegueWithIdentifier("AllMealsToMealDirections", sender: self)
     }
 }

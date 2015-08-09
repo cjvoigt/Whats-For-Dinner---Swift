@@ -1,5 +1,5 @@
 //
-//  mealIngredeintsViewController.swift
+//  MealDirectionsViewController.swift
 //  What's For Dinner?
 //
 //  Created by Camden Voigt on 8/5/15.
@@ -8,44 +8,43 @@
 
 import UIKit
 
-class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource {
+class MealDirectionsViewController: UITableViewController, HeaderViewDataSource {
     
     //MARK: IBOutlets
     
-    @IBOutlet weak var viewSelctor: UISegmentedControl!
+    @IBOutlet weak var viewSelector: UISegmentedControl!
     
     //MARK: Properties
-    var headerView: HeaderView!
-
+    var headerView :HeaderView!
+    
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
         createHeaderView()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewSelctor.selectedSegmentIndex = 1
+        viewSelector.selectedSegmentIndex = 0
         headerView.reloadData()
     }
     
     //MARK: IBActions
     
-    @IBAction func switchToDirectionsView(sender: AnyObject) {
-       navigationController?.popViewControllerAnimated(true)
-        print("MealIngredientsToMealDiirections", appendNewline: false)
+    @IBAction func switchToIngredientsView(sender: AnyObject) {
+        performSegueWithIdentifier("MealDirectionsToMealIngredients", sender: self)
     }
     
-    @IBAction func addIngredients(sender: AnyObject) {
-        performSegueWithIdentifier("MealIngredientsToAddMealIngredient", sender: self)
+    @IBAction func addDirections(sender: AnyObject) {
+        performSegueWithIdentifier("MealDirectionsToAddMealDirection", sender: self)
     }
     
     @IBAction func saveMeal(sender: AnyObject) {
-        //TODO: save Meal
+        //TODO: Save Meal
+        navigationController?.popToRootViewControllerAnimated(true)
     }
-
+    
     // MARK: - TableView data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,12 +53,12 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: Number of Rows
+        //TODO: Number Of Rows
         return 10
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("mealIngredientCells", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("mealDirectionCell", forIndexPath: indexPath)
         
         //TODO: Configure the cell...
         
@@ -69,7 +68,7 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     //MARK: HeaderView Data Source
     
     func imageDataForHeaderView(headerView: HeaderView) -> UIImage? {
-        return UIImage(imageLiteral: "Meal-50")
+        return UIImage(imageLiteral: "first")
     }
     
     func headerView(headerView: HeaderView, labelDataForIndex index: Int) -> String {
@@ -87,10 +86,12 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     //MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MealIngredientsToMealDirections" {
-            print("MealIngredientsToMealDiirections", appendNewline: false)
-        } else if segue.identifier == "MealIngredientsToAddMealIngredient" {
-            print("MealIngredientsToAddMealIngredient", appendNewline: false)
+        if segue.identifier == "MealDirectionsToMealIngredients" {
+            let mealIngredients = segue.destinationViewController as! MealIngredeintsViewController
+            mealIngredients.headerView = headerView
+            print("MealDirectionsToMealIngredients", appendNewline: false)
+        } else if segue.identifier == "MealDirectionsToAddMealDirection" {
+            print("MealDirectionsToAddMealDirection", appendNewline: false)
         }
     }
     

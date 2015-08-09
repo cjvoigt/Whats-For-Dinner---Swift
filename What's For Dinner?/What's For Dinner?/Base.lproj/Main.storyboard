@@ -13,12 +13,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allMealsCell" id="XiK-UU-008">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allMealsCell" textLabel="9Ld-gE-kZt" style="IBUITableViewCellStyleDefault" id="XiK-UU-008">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XiK-UU-008" id="The-FX-wFC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ld-gE-kZt">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -28,17 +37,73 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Your Meals" id="P5K-FH-sjj">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qv6-a0-Ff5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DFa-0c-i8D">
                             <connections>
-                                <action selector="addMeal:" destination="jIG-VX-PpY" id="lWh-My-0MZ"/>
-                                <segue destination="8OZ-z6-8Qk" kind="show" identifier="AllMealsToMealDirections" id="gWc-Nx-fzg"/>
+                                <action selector="addMeal:" destination="jIG-VX-PpY" id="4CD-lr-tfM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="sFX-Oz-xHb" kind="show" identifier="AllMealsToOnlineMeals" id="PB6-ek-XP9"/>
+                        <segue destination="8OZ-z6-8Qk" kind="show" identifier="AllMealsToMealDirections" id="Gd6-uc-U8D"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8W-G7-kOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1422" y="418"/>
+        </scene>
+        <!--Meals From Food2Fork.com-->
+        <scene sceneID="yNU-nT-2CY">
+            <objects>
+                <collectionViewController id="sFX-Oz-xHb" customClass="OnlineMealsCollectionViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="F2w-Fn-1DH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zkd-mZ-tyS">
+                            <size key="itemSize" width="130" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="onlineMealsCell" id="Mm8-aE-yCZ" customClass="OnlineMealCollectionViewCell" customModule="What_s_For_Dinner_" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="130" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-Or-IBm">
+                                            <rect key="frame" x="44" y="55" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="1" green="0.066666670139999995" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1D2-Or-IBm" firstAttribute="centerX" secondItem="Mm8-aE-yCZ" secondAttribute="centerX" id="W0p-Q7-dCq"/>
+                                    <constraint firstItem="1D2-Or-IBm" firstAttribute="centerY" secondItem="Mm8-aE-yCZ" secondAttribute="centerY" id="Wx9-kG-ATH"/>
+                                </constraints>
+                                <size key="customSize" width="130" height="130"/>
+                                <connections>
+                                    <outlet property="label" destination="1D2-Or-IBm" id="JJm-bo-gIC"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="sFX-Oz-xHb" id="1yo-ah-6zR"/>
+                            <outlet property="delegate" destination="sFX-Oz-xHb" id="fhx-Kp-wjw"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Meals From Food2Fork.com" id="XQc-vS-ZMU"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cLu-rc-g5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="418"/>
         </scene>
         <!--Meal Directions View Controller-->
         <scene sceneID="GqH-6c-tsU">
@@ -89,7 +154,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="viewSelector" destination="xgL-ak-g5m" id="0OA-bO-kJj"/>
-                        <segue destination="x06-MB-tOZ" kind="show" identifier="MealDirectionsToMealIngredients" id="8pu-2S-nTS"/>
+                        <segue destination="x06-MB-tOZ" kind="show" identifier="MealDirectionsToMealIngredients" animates="NO" id="8pu-2S-nTS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcf-2r-SYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,7 +176,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make This View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db2-lL-Grd">
                                 <rect key="frame" x="217" y="274" width="167" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -194,7 +259,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make This View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAf-9G-bhr">
                                 <rect key="frame" x="232" y="277" width="136" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

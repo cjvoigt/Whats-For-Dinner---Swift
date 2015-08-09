@@ -1,5 +1,5 @@
 //
-//  MealDirectionsViewController.swift
+//  mealIngredeintsViewController.swift
 //  What's For Dinner?
 //
 //  Created by Camden Voigt on 8/5/15.
@@ -8,56 +8,58 @@
 
 import UIKit
 
-class MealDirectionsViewController: UITableViewController, HeaderViewDataSource {
+class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource {
     
     //MARK: IBOutlets
     
-    @IBOutlet weak var viewSelector: UISegmentedControl!
+    @IBOutlet weak var viewSelctor: UISegmentedControl!
     
     //MARK: Properties
-    var headerView :HeaderView!
-    
+    var headerView: HeaderView!
+
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         createHeaderView()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewSelector.selectedSegmentIndex = 0
+        viewSelctor.selectedSegmentIndex = 1
         headerView.reloadData()
     }
     
     //MARK: IBActions
     
-    @IBAction func switchToIngredientsView(sender: AnyObject) {
-        performSegueWithIdentifier("MealDirectionsToMealIngredients", sender: self)
+    @IBAction func switchToDirectionsView(sender: AnyObject) {
+       navigationController?.popViewControllerAnimated(false)
+        print("MealIngredientsToMealDiirections", appendNewline: false)
     }
     
-    @IBAction func addDirections(sender: AnyObject) {
-        performSegueWithIdentifier("MealDirectionsToAddMealDirection", sender: self)
+    @IBAction func addIngredients(sender: AnyObject) {
+        performSegueWithIdentifier("MealIngredientsToAddMealIngredient", sender: self)
     }
     
     @IBAction func saveMeal(sender: AnyObject) {
-        //TODO: Save Meal
+        //TODO: save Meal
+        navigationController?.popToRootViewControllerAnimated(true)
     }
-    
+
     // MARK: - TableView data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        //TODO: Number of Sections
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: Number Of Rows
+        //TODO: Number of Rows
         return 10
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("mealDirectionCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("mealIngredientCells", forIndexPath: indexPath)
         
         //TODO: Configure the cell...
         
@@ -85,12 +87,10 @@ class MealDirectionsViewController: UITableViewController, HeaderViewDataSource 
     //MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MealDirectionsToMealIngredients" {
-            let mealIngredients = segue.destinationViewController as! MealIngredeintsViewController
-            mealIngredients.headerView = headerView
-            print("MealDirectionsToMealIngredients", appendNewline: false)
-        } else if segue.identifier == "MealDirectionsToAddMealDirection" {
-            print("MealDirectionsToAddMealDirection", appendNewline: false)
+        if segue.identifier == "MealIngredientsToMealDirections" {
+            print("MealIngredientsToMealDirections", appendNewline: true)
+        } else if segue.identifier == "MealIngredientsToAddMealIngredient" {
+            print("MealIngredientsToAddMealIngredient", appendNewline: true)
         }
     }
     
