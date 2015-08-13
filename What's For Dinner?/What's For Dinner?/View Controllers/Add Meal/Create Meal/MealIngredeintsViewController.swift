@@ -8,27 +8,26 @@
 
 import UIKit
 
-class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource {
+class MealIngredeintsViewController: UITableViewController {
     
     //MARK: IBOutlets
     
     @IBOutlet weak var viewSelctor: UISegmentedControl!
-    
-    //MARK: Properties
-    var headerView: HeaderView!
 
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        createHeaderView()
+        pageIndex = 0
+        //createHeaderView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewSelctor.selectedSegmentIndex = 1
-        headerView.reloadData()
+        title = "Step 1: Create Ingredients"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "add:")
+        //headerView.reloadData()
     }
     
     //MARK: IBActions
@@ -50,11 +49,11 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
     // MARK: - TableView data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        //TODO: Figure out Sections
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: Number of Rows
         return 10
     }
     
@@ -63,43 +62,8 @@ class MealIngredeintsViewController: UITableViewController, HeaderViewDataSource
         
         //TODO: Configure the cell...
         
+        cell.textLabel?.text = "Hello"
+        
         return cell
-    }
-    
-    //MARK: HeaderView Data Source
-    
-    func imageDataForHeaderView(headerView: HeaderView) -> UIImage? {
-        return UIImage(imageLiteral: "first")
-    }
-    
-    func headerView(headerView: HeaderView, labelDataForIndex index: Int) -> String {
-        if index == 0 {
-            return "Name"
-        } else if index == 1 {
-            return "Price"
-        } else if index == 2 {
-            return "Calories"
-        } else {
-            return "Test"
-        }
-    }
-    
-    //MARK: Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MealIngredientsToMealDirections" {
-            print("MealIngredientsToMealDirections", appendNewline: true)
-        } else if segue.identifier == "MealIngredientsToAddMealIngredient" {
-            print("MealIngredientsToAddMealIngredient", appendNewline: true)
-        }
-    }
-    
-    //MARK: Private API
-    
-    private func createHeaderView() {
-        headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width - 20, height: 150))
-        headerView.dataSource = self
-        tableView.tableHeaderView = headerView
-        headerView.reloadData()
     }
 }

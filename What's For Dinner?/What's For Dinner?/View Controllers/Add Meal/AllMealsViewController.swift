@@ -58,6 +58,6 @@ class AllMealsViewController: UITableViewController {
     }
     
     private func showCreateMealViewController(action: UIAlertAction!) {
-        performSegueWithIdentifier("AllMealsToMealDirections", sender: self)
+        performSegueWithIdentifier("AllMealsToCreateMeal", sender: self)
     }
 }

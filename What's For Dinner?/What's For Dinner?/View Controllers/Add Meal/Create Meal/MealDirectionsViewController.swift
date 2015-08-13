@@ -8,26 +8,25 @@
 
 import UIKit
 
-class MealDirectionsViewController: UITableViewController, HeaderViewDataSource {
+class MealDirectionsViewController: UITableViewController {
     
     //MARK: IBOutlets
     
     @IBOutlet weak var viewSelector: UISegmentedControl!
     
-    //MARK: Properties
-    var headerView :HeaderView!
-    
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createHeaderView()
+        pageIndex = 1
+        //createHeaderView()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewSelector.selectedSegmentIndex = 0
-        headerView.reloadData()
+        title = "Step 2: Create Directions"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "add:")
+        //headerView.reloadData()
     }
     
     //MARK: IBActions
@@ -63,44 +62,5 @@ class MealDirectionsViewController: UITableViewController, HeaderViewDataSource 
         //TODO: Configure the cell...
         
         return cell
-    }
-    
-    //MARK: HeaderView Data Source
-    
-    func imageDataForHeaderView(headerView: HeaderView) -> UIImage? {
-        return UIImage(imageLiteral: "first")
-    }
-    
-    func headerView(headerView: HeaderView, labelDataForIndex index: Int) -> String {
-        if index == 0 {
-            return "Name"
-        } else if index == 1 {
-            return "Price"
-        } else if index == 2 {
-            return "Calories"
-        } else {
-            return "Test"
-        }
-    }
-    
-    //MARK: Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MealDirectionsToMealIngredients" {
-            let mealIngredients = segue.destinationViewController as! MealIngredeintsViewController
-            mealIngredients.headerView = headerView
-            print("MealDirectionsToMealIngredients", appendNewline: false)
-        } else if segue.identifier == "MealDirectionsToAddMealDirection" {
-            print("MealDirectionsToAddMealDirection", appendNewline: false)
-        }
-    }
-    
-    //MARK: Private API
-    
-    private func createHeaderView() {
-        headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width - 20, height: 150))
-        headerView.dataSource = self
-        tableView.tableHeaderView = headerView
-        headerView.reloadData()
     }
 }
