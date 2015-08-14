@@ -37,6 +37,7 @@ class MealOtherOptionsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("mealOtherOptionsCell", forIndexPath: indexPath)
         
         //TODO: Configure Cell...
+        cell.textLabel?.text = "Options"
         
         return cell
     }

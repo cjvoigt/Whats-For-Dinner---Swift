@@ -20,32 +20,14 @@ class MealIngredeintsViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         pageIndex = 0
-        //createHeaderView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         title = "Step 1: Create Ingredients"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "add:")
-        //headerView.reloadData()
     }
     
-    //MARK: IBActions
-    
-    @IBAction func switchToDirectionsView(sender: AnyObject) {
-       navigationController?.popViewControllerAnimated(false)
-        print("MealIngredientsToMealDiirections", appendNewline: false)
-    }
-    
-    @IBAction func addIngredients(sender: AnyObject) {
-        performSegueWithIdentifier("MealIngredientsToAddMealIngredient", sender: self)
-    }
-    
-    @IBAction func saveMeal(sender: AnyObject) {
-        //TODO: save Meal
-        navigationController?.popToRootViewControllerAnimated(true)
-    }
-
     // MARK: - TableView data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -62,7 +44,7 @@ class MealIngredeintsViewController: UITableViewController {
         
         //TODO: Configure the cell...
         
-        cell.textLabel?.text = "Hello"
+        cell.textLabel?.text = "Ingredients"
         
         return cell
     }

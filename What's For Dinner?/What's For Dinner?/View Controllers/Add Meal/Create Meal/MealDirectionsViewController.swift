@@ -19,29 +19,12 @@ class MealDirectionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pageIndex = 1
-        //createHeaderView()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         title = "Step 2: Create Directions"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "add:")
-        //headerView.reloadData()
-    }
-    
-    //MARK: IBActions
-    
-    @IBAction func switchToIngredientsView(sender: AnyObject) {
-        performSegueWithIdentifier("MealDirectionsToMealIngredients", sender: self)
-    }
-    
-    @IBAction func addDirections(sender: AnyObject) {
-        performSegueWithIdentifier("MealDirectionsToAddMealDirection", sender: self)
-    }
-    
-    @IBAction func saveMeal(sender: AnyObject) {
-        //TODO: Save Meal
-        navigationController?.popToRootViewControllerAnimated(true)
     }
     
     // MARK: - TableView data source
@@ -60,6 +43,7 @@ class MealDirectionsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("mealDirectionCell", forIndexPath: indexPath)
         
         //TODO: Configure the cell...
+        cell.textLabel?.text = "Directions"
         
         return cell
     }

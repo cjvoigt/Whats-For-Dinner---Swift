@@ -8,30 +8,31 @@
 
 import UIKit
 
-class PageViewController: UIViewController, UIPageViewControllerDataSource, HeaderViewDataSource {
+class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, HeaderViewDataSource {
     
     //MARK: Properties
     
     var pageViewController: UIPageViewController!
     var headerView: HeaderView!
+    var indexOfCurrentView: Int = 0
     
     //MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reset()
+        configurePageViewController()
         createHeaderView()
+        configureNavigationItem()
     }
     
     //MARK: PageViewController Data Source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         var index = viewController.pageIndex
-        
+
         if index == NSNotFound {
             return nil
         }
-        
         ++index
         
         return viewControllerAtIndex(index)
@@ -57,6 +58,13 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, Head
         return 1
     }
     
+    //MARK: PageViewController Delegate
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let currentViewController = pageViewController.viewControllers?[0]
+        navigationItem.title = currentViewController?.navigationItem.title
+    }
+    
     //MARK: HeaderView Data Source
     
     func imageDataForHeaderView(headerView: HeaderView) -> UIImage? {
@@ -75,7 +83,42 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, Head
         }
     }
     
+    //MARK: Bar Button Actions
+    
+    func add() {
+        if let _ = pageViewController.viewControllers?[0] as? MealIngredeintsViewController {
+            performSegueWithIdentifier("MealIngredientsToCreateIngredient", sender: self)
+            print("Went to Create an Ingredient")
+        } else if let _ = pageViewController.viewControllers?[0] as? MealDirectionsViewController {
+            performSegueWithIdentifier("MealDirectionsToCreateDirection", sender: self)
+            print("Went To Create a Directions")
+        } else {
+          print("Could Not Go To View")
+        }
+    }
+    
+    func saveMeal() {
+        //TODO: figure out how to do verification for saving
+        print("saved")
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     //MARK: Private API
+    
+    private func configurePageViewController() {
+        /* Getting the page View controller */
+        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        pageViewController.dataSource = self
+        pageViewController.delegate = self
+        
+        let startViewController = viewControllerAtIndex(0)!
+        pageViewController.setViewControllers([startViewController], direction: .Forward, animated: true, completion: nil)
+        
+        pageViewController.view.frame = CGRectMake(0, 200, view.frame.width, view.frame.height)
+        addChildViewController(pageViewController)
+        view.addSubview(pageViewController.view)
+        pageViewController.didMoveToParentViewController(self)
+    }
     
     private func createHeaderView() {
         headerView = HeaderView(frame: CGRect(x: 0, y: 64, width: view.bounds.size.width - 20, height: 150))
@@ -84,6 +127,11 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, Head
         headerView.reloadData()
     }
     
+    private func configureNavigationItem() {
+        navigationItem.title = pageViewController.viewControllers?[0].title
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveMeal")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
+    }
     
     private func viewControllerAtIndex(index: Int) -> UIViewController? {
         if index < 0 || index > 2 {
@@ -91,33 +139,12 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, Head
         }
         
         if index == 0 {
-            return (self.storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
+            return (storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
         } else if index == 1 {
-            return (self.storyboard?.instantiateViewControllerWithIdentifier("MealDirectionsView"))!
+            return (storyboard?.instantiateViewControllerWithIdentifier("MealDirectionsView"))!
         } else if index == 2 {
-            return(self.storyboard?.instantiateViewControllerWithIdentifier("OtherMealInformationView"))!
+            return(storyboard?.instantiateViewControllerWithIdentifier("OtherMealInformationView"))!
         }
-        return (self.storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
-    }
-    
-    private func reset() {
-        /* Getting the page View controller */
-        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
-        self.pageViewController.dataSource = self
-        
-        let startViewController = viewControllerAtIndex(0)!
-        self.pageViewController.setViewControllers([startViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-        
-        /* We are substracting 30 because we have a start again button whose height is 30*/
-        self.pageViewController.view.frame = CGRectMake(0, 200, self.view.frame.width, self.view.frame.height - 30)
-        self.addChildViewController(pageViewController)
-        self.view.addSubview(pageViewController.view)
-        self.pageViewController.didMoveToParentViewController(self)
-    }
-    
-    private func add(sender: AnyObject) {
-        performSegueWithIdentifier("MealIngredientsToAddMealIngredient", sender: self)
+        return (storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
     }
 }
-
-
