@@ -8,12 +8,11 @@
 
 import UIKit
 
-class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, HeaderViewDataSource {
+class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     //MARK: Properties
     
     var pageViewController: UIPageViewController!
-    var headerView: HeaderView!
     var indexOfCurrentView: Int = 0
     
     //MARK: View Life Cycle
@@ -21,7 +20,6 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController()
-        createHeaderView()
         configureNavigationItem()
     }
     
@@ -51,7 +49,7 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 3
+        return 4
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -61,26 +59,16 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     //MARK: PageViewController Delegate
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        let currentViewController = pageViewController.viewControllers?[0]
-        navigationItem.title = currentViewController?.navigationItem.title
-    }
-    
-    //MARK: HeaderView Data Source
-    
-    func imageDataForHeaderView(headerView: HeaderView) -> UIImage? {
-        return UIImage(imageLiteral: "first")
-    }
-    
-    func headerView(headerView: HeaderView, labelDataForIndex index: Int) -> String {
-        if index == 0 {
-            return "Name"
-        } else if index == 1 {
-            return "Price"
-        } else if index == 2 {
-            return "Calories"
+        if let _ = pageViewController.viewControllers?[0] as? MealPictureViewController {
+             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Camera, target: self, action: "add")
+        } else if let _ = pageViewController.viewControllers?[0] as? MealIngredeintsViewController {
+             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: MealIngredeintsViewController(), action: "add")
+        } else if let _ = pageViewController.viewControllers?[0] as? MealDirectionsViewController {
+             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
         } else {
-            return "Test"
+            navigationItem.rightBarButtonItem = nil
         }
+        
     }
     
     //MARK: Bar Button Actions
@@ -114,37 +102,33 @@ class PageViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         let startViewController = viewControllerAtIndex(0)!
         pageViewController.setViewControllers([startViewController], direction: .Forward, animated: true, completion: nil)
         
-        pageViewController.view.frame = CGRectMake(0, 200, view.frame.width, view.frame.height)
+        pageViewController.view.frame = CGRectMake(0, 64, view.frame.width, view.frame.height)
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMoveToParentViewController(self)
     }
     
-    private func createHeaderView() {
-        headerView = HeaderView(frame: CGRect(x: 0, y: 64, width: view.bounds.size.width - 20, height: 150))
-        headerView.dataSource = self
-        view.addSubview(headerView)
-        headerView.reloadData()
-    }
-    
     private func configureNavigationItem() {
         navigationItem.title = pageViewController.viewControllers?[0].title
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveMeal")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Camera, target: self, action: "add")
     }
     
     private func viewControllerAtIndex(index: Int) -> UIViewController? {
-        if index < 0 || index > 2 {
+        if index < 0 || index > 3 {
             return nil
         }
         
         if index == 0 {
-            return (storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
+            return (storyboard?.instantiateViewControllerWithIdentifier("MealPictureView"))!
         } else if index == 1 {
-            return (storyboard?.instantiateViewControllerWithIdentifier("MealDirectionsView"))!
+            return (storyboard?.instantiateViewControllerWithIdentifier("MealBasicInfoView"))!
         } else if index == 2 {
-            return(storyboard?.instantiateViewControllerWithIdentifier("OtherMealInformationView"))!
+            return(storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
+        } else if index == 3 {
+            return (storyboard?.instantiateViewControllerWithIdentifier("MealDirectionsView"))!
+        } else {
+           return nil
         }
-        return (storyboard?.instantiateViewControllerWithIdentifier("MealIngredientsView"))!
     }
 }

@@ -19,7 +19,7 @@ class MealIngredeintsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        pageIndex = 0
+        pageIndex = 2
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,6 +29,10 @@ class MealIngredeintsViewController: UITableViewController {
     }
     
     // MARK: - TableView data source
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Ingredients"
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         //TODO: Figure out Sections
@@ -47,5 +51,9 @@ class MealIngredeintsViewController: UITableViewController {
         cell.textLabel?.text = "Ingredients"
         
         return cell
+    }
+    
+    func add() {
+        performSegueWithIdentifier("MealIngredientsToCreateIngredient", sender: self)
     }
 }

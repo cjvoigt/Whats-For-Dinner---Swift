@@ -8,18 +8,18 @@
 
 import UIKit
 
-class MealOtherOptionsViewController: UITableViewController {
+class MealBasicInfoViewController: UITableViewController {
     
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageIndex = 2
+        pageIndex = 1
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        title = "Step 3: Fill in Other Information"
+        title = "Step 2: Fill in Other Information"
     }
     
     // MARK: - Table view data source

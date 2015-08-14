@@ -18,7 +18,7 @@ class MealDirectionsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageIndex = 1
+        pageIndex = 3
     }
 
     override func viewWillAppear(animated: Bool) {
