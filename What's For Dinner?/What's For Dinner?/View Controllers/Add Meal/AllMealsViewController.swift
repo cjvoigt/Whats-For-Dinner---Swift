@@ -10,7 +10,6 @@ import UIKit
 
 class AllMealsViewController: UITableViewController {
 
-
     //MARK: View Life Cycle
     
     override func viewDidLoad() {
@@ -18,22 +17,19 @@ class AllMealsViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = false
     }
 
-    // MARK: - TableView data source
+    //MARK: - TableView data source
+    //TODO: Make this view
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 10
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("allMealsCell", forIndexPath: indexPath)
-
-        //TODO: Make Sure this works.
         
         return cell
     }
