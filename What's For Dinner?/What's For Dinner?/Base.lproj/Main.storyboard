@@ -94,9 +94,6 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="accessoryView" destination="1de-F0-H4o" id="VT6-lK-rYh"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailLabelCell" textLabel="5zg-Im-pS9" detailTextLabel="6UJ-Oc-qSg" style="IBUITableViewCellStyleValue1" id="VZT-Ic-Mm2">
                                 <rect key="frame" x="0.0" y="321" width="600" height="44"/>
@@ -193,7 +190,7 @@
             </objects>
             <point key="canvasLocation" x="-1246" y="1262"/>
         </scene>
-        <!--Meals From Food2Fork.com-->
+        <!--Search for a Meal Online-->
         <scene sceneID="yNU-nT-2CY">
             <objects>
                 <collectionViewController id="sFX-Oz-xHb" customClass="OnlineMealsCollectionViewController" customModule="What_s_For_Dinner_" customModuleProvider="target" sceneMemberID="viewController">
@@ -240,7 +237,7 @@
                             <outlet property="delegate" destination="sFX-Oz-xHb" id="fhx-Kp-wjw"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Meals From Food2Fork.com" id="XQc-vS-ZMU"/>
+                    <navigationItem key="navigationItem" title="Search for a Meal Online" id="XQc-vS-ZMU"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLu-rc-g5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

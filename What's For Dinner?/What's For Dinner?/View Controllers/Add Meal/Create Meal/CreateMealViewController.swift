@@ -26,8 +26,7 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
         tableView.reloadData()
     }
     
-    //MARK: TableView data source
-    //TODO: Figure out if this and the delegate can be moved to its own class
+    //MARK: TableView Data Source
     
      override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
@@ -58,19 +57,9 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     }
     
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let section = indexPath.section
+        let rowPicker = CreateMealRowPicker(tableView: tableView, meal: meal)
         
-        if section == CreateMealSectionNumbers.BasicMealInformation.rawValue {
-            return rowForBasicMealInfromationSection(indexPath)
-        } else if section == CreateMealSectionNumbers.OtherMealInformation.rawValue {
-            return rowForOtherInformationSection(indexPath)
-        } else if section == CreateMealSectionNumbers.Ingredients.rawValue {
-            rowForIngredientsSection(indexPath)
-        } else if section == CreateMealSectionNumbers.Directions.rawValue {
-            rowForDirectionsSection(indexPath)
-        }
-        
-        return UITableViewCell()
+        return rowPicker.chooseRow(indexPath: indexPath)
     }
     
     //MARK: TableView Delegate
@@ -148,118 +137,32 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     }
     
     @IBAction func getPicture(sender: AnyObject) {
-        let picker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-        } else {
-            picker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+        let picker = configureImagePicker()
+        if picker.sourceType == .Camera {
+            picker.takePicture()
         }
-        picker.allowsEditing = true
-        picker.delegate = self
-        picker.takePicture()
         presentViewController(picker, animated: true, completion: nil)
     }
     
     //MARK: Private API
     
-    private func rowForBasicMealInfromationSection(indexPath: NSIndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        if row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ImageViewCell", forIndexPath: indexPath)
-            
-            let imageView = cell.viewWithTag(103) as! UIImageView
-            
-            //TODO: Add Way to tak picture for the meal
-            if let _ = meal.imageName {
-                let path = getDocumentsDirectory().stringByAppendingPathComponent(meal.imageName)
-                imageView.image = UIImage(contentsOfFile: path)
-            } else {
-                imageView.image = UIImage(imageLiteral: "first")
-            }
-            
-            return cell
-        } else if row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath)
-            
-            let label = cell.viewWithTag(101) as! UILabel
-            let textBox = cell.viewWithTag(102) as! UITextField
-            
-            label.text = "Name"
-            textBox.placeholder = "Tap Here to Type"
-            
-            return cell
+    private func configureImagePicker() -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+             picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath)
-            
-            let label = cell.viewWithTag(101) as! UILabel
-            let textBox = cell.viewWithTag(102) as! UITextField
-            
-            label.text = "Number of Servings"
-            textBox.placeholder = "Tap Here to Type"
-            
-            return cell
+            picker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         }
-    }
-    
-    private func rowForOtherInformationSection(indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SwitchViewCell", forIndexPath: indexPath)
-        
-        let label = cell.viewWithTag(104) as! UILabel
-        label.text = titleForOtherInformationSection(indexPath)
-        
-        let swt = cell.accessoryView as! UISwitch
-        swt.on = false
-        
-        return cell
-    }
-    
-    private func rowForIngredientsSection(indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DetailLabelCell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = "No Ingredients"
-        cell.detailTextLabel?.text = ""
-        
-        return cell
-    }
-    
-    private func rowForDirectionsSection(indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DetailLabelCell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = "No Directions"
-        cell.detailTextLabel?.text = ""
-        
-        return cell
+        picker.allowsEditing = true
+        picker.delegate = self
+        return picker
     }
     
     private func getDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
-    }
-
-    private func titleForOtherInformationSection(indexPath: NSIndexPath) -> String {
-        switch (indexPath.row) {
-            case 0:
-                return "Vegetarian"
-                
-            case 1:
-                return "Vegan"
-                
-            case 2:
-                return "Dairy Free"
-                
-            case 3:
-                return "Gluten Free"
-                
-            case 4:
-                return "Healthy"
-                
-            case 5:
-                return "Cheap"
-                
-            default:
-                return ""
-        }
     }
     
     private func buttonHeaderView(name: String) -> UIView {

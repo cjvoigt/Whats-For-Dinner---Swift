@@ -31,6 +31,9 @@
 		58EB5E331B2A809B0063FBEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E321B2A809B0063FBEC /* Images.xcassets */; };
 		58EB5E361B2A809B0063FBEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5E341B2A809B0063FBEC /* LaunchScreen.xib */; };
 		58EB5E421B2A809B0063FBEC /* What_s_For_Dinner_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5E411B2A809B0063FBEC /* What_s_For_Dinner_Tests.swift */; };
+		58FAD2D71B9B966B0027AFD6 /* CreateMealRowPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAD2D61B9B966B0027AFD6 /* CreateMealRowPicker.swift */; };
+		58FAD2DA1B9BEDE10027AFD6 /* RowPickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAD2D91B9BEDE10027AFD6 /* RowPickerProtocol.swift */; };
+		58FAD2DC1B9BF5B80027AFD6 /* RowPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAD2DB1B9BF5B80027AFD6 /* RowPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		58EB5E3B1B2A809B0063FBEC /* What's For Dinner?Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "What's For Dinner?Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EB5E401B2A809B0063FBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58EB5E411B2A809B0063FBEC /* What_s_For_Dinner_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What_s_For_Dinner_Tests.swift; sourceTree = "<group>"; };
+		58FAD2D61B9B966B0027AFD6 /* CreateMealRowPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMealRowPicker.swift; sourceTree = "<group>"; };
+		58FAD2D91B9BEDE10027AFD6 /* RowPickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowPickerProtocol.swift; sourceTree = "<group>"; };
+		58FAD2DB1B9BF5B80027AFD6 /* RowPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 		58470CFA1B3860990067724E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				58FAD2D81B9BEDBF0027AFD6 /* Picker */,
 				585763FA1B7711310011A4A2 /* Meal */,
 				585763FC1B7711310011A4A2 /* SwiftyJSON.swift */,
 				585764031B782A030011A4A2 /* Meals.swift */,
@@ -142,6 +149,7 @@
 		585763E81B7710BC0011A4A2 /* Create Meal */ = {
 			isa = PBXGroup;
 			children = (
+				58FAD2DD1B9E5F370027AFD6 /* Row Pickers */,
 				58A143831B7D8B92000B4D10 /* CreateMealViewController.swift */,
 				585764051B783DA10011A4A2 /* CreateIngredientViewController.swift */,
 				58A143851B7D8C24000B4D10 /* CreateDirectionViewController.swift */,
@@ -261,6 +269,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		58FAD2D81B9BEDBF0027AFD6 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				58FAD2D91B9BEDE10027AFD6 /* RowPickerProtocol.swift */,
+				58FAD2DB1B9BF5B80027AFD6 /* RowPicker.swift */,
+			);
+			name = Picker;
+			sourceTree = "<group>";
+		};
+		58FAD2DD1B9E5F370027AFD6 /* Row Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				58FAD2D61B9B966B0027AFD6 /* CreateMealRowPicker.swift */,
+			);
+			name = "Row Pickers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -368,13 +393,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				58470D091B3861320067724E /* AppDelegate.swift in Sources */,
+				58FAD2D71B9B966B0027AFD6 /* CreateMealRowPicker.swift in Sources */,
 				585764061B783DA10011A4A2 /* CreateIngredientViewController.swift in Sources */,
 				58A143861B7D8C24000B4D10 /* CreateDirectionViewController.swift in Sources */,
 				585763F01B7710BC0011A4A2 /* AllMealsViewController.swift in Sources */,
 				585764021B77FF750011A4A2 /* Meal.swift in Sources */,
 				58E433D51B7ACDBF00FC156B /* UIViewController+Extension.swift in Sources */,
+				58FAD2DA1B9BEDE10027AFD6 /* RowPickerProtocol.swift in Sources */,
 				585763F41B7710BC0011A4A2 /* OnlineMealsCollectionViewController.swift in Sources */,
 				5884189B1B73EBC10019710B /* HeaderView.swift in Sources */,
+				58FAD2DC1B9BF5B80027AFD6 /* RowPicker.swift in Sources */,
 				58A74D591B75713800B2E368 /* ParseJSONOperation.swift in Sources */,
 				585763F51B7710BC0011A4A2 /* WeeklyViewController.swift in Sources */,
 				585763FD1B7711310011A4A2 /* Ingredient.swift in Sources */,

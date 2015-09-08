@@ -31,7 +31,7 @@ enum MealKeys: String {
     case ingredients = "extendedIngredients"
 }
 
-class Meal: NSObject, NSCoding {
+class Meal: NSObject, NSCoding, ImageObject {
     
     //MARK: Properties
     
@@ -48,7 +48,7 @@ class Meal: NSObject, NSCoding {
     var numberOfLikes: Int!
     var cookTime: Double!
     var title: String!
-    var imageName: String!
+    var imageName: String?
     var sourceURL: String!
     var spoonacularSourceURL: String!
     var text: String!
@@ -72,7 +72,7 @@ class Meal: NSObject, NSCoding {
         numberOfLikes = aDecoder.decodeObjectForKey(MealKeys.numberOfLikes.rawValue) as! Int
         cookTime = aDecoder.decodeObjectForKey(MealKeys.cookTime.rawValue) as! Double
         title = aDecoder.decodeObjectForKey(MealKeys.title.rawValue) as! String
-        imageName = aDecoder.decodeObjectForKey(MealKeys.imageName.rawValue) as! String
+        imageName = aDecoder.decodeObjectForKey(MealKeys.imageName.rawValue) as? String
         sourceURL = aDecoder.decodeObjectForKey(MealKeys.sourceURL.rawValue) as! String
         spoonacularSourceURL = aDecoder.decodeObjectForKey(MealKeys.spoonacularSourceURL.rawValue) as! String
         text = aDecoder.decodeObjectForKey(MealKeys.text.rawValue) as! String
@@ -122,7 +122,7 @@ class Meal: NSObject, NSCoding {
             numberOfLikes = results[MealKeys.numberOfLikes.rawValue] as! Int
             cookTime = results[MealKeys.cookTime.rawValue] as! Double
             title = results[MealKeys.title.rawValue] as! String
-            imageName = results[MealKeys.imageName.rawValue] as! String
+            imageName = results[MealKeys.imageName.rawValue] as? String
             sourceURL = results[MealKeys.sourceURL.rawValue] as! String
             spoonacularSourceURL = results[MealKeys.spoonacularSourceURL.rawValue] as! String
             text = results[MealKeys.text.rawValue] as! String
