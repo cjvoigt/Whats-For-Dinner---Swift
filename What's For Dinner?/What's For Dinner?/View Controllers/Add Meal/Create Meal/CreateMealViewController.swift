@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum CreateMealSectionNumbers: Int {
     case BasicMealInformation = 0, OtherMealInformation, Ingredients, Directions
@@ -22,11 +23,13 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     
      override func viewDidLoad() {
         super.viewDidLoad()
-        meal = Meal(json: nil)
-        tableView.reloadData()
+        meal = Meal()
+        meal.imageName = "Meal-50"
     }
     
     //MARK: TableView Data Source
+    //TODO: Find a way to make a class for sections kinda like we did for rows
+    //TODO: Do research on gaurd statement
     
      override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
@@ -58,7 +61,6 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let rowPicker = CreateMealRowPicker(tableView: tableView, meal: meal)
-        
         return rowPicker.chooseRow(indexPath: indexPath)
     }
     
@@ -81,9 +83,9 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     
      override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == CreateMealSectionNumbers.Ingredients.rawValue {
-            return buttonHeaderView("Ingredients")
+            return buttonHeaderView("Ingredients", buttonTag: CreateMealSectionNumbers.Ingredients.rawValue)
         } else if section == CreateMealSectionNumbers.Directions.rawValue {
-           return buttonHeaderView("Directions")
+            return buttonHeaderView("Directions", buttonTag: CreateMealSectionNumbers.Directions.rawValue)
         } else {
             return nil
         }
@@ -131,8 +133,19 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
     }
     
     @IBAction func saveMeal(sender: AnyObject) {
-        navigationController?.popToRootViewControllerAnimated(true)
-        //TODO: Figure out how to save meal
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
+        let meal = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        meal.setValue(self.meal.imageName, forKey: "image")
+        
+        do{
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save \(error). \(error.userInfo)")
+        }
         //TODO: Add verfication that meal was completely filled out
     }
     
@@ -158,34 +171,12 @@ class CreateMealViewController: UITableViewController, UIImagePickerControllerDe
         picker.delegate = self
         return picker
     }
-    
-    private func getDocumentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
-    private func buttonHeaderView(name: String) -> UIView {
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
-        //Create Button
-        let btn = UIButton(type: UIButtonType.ContactAdd)
-        btn.frame = CGRectMake(tableView.frame.size.width - 40, 25, 20, 20)
-        if name == "Ingredients" {
-            btn.tag = CreateMealSectionNumbers.Ingredients.rawValue
-        } else {
-            btn.tag = CreateMealSectionNumbers.Directions.rawValue
-        }
-        btn.addTarget(self, action: "addItem:", forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(btn)
-        //Create Label
-        let label = UILabel(frame: CGRectMake(15, 25, tableView.frame.size.width - 40, 20))
-        label.text = name.uppercaseString
-        label.backgroundColor = UIColor.clearColor()
-        label.textColor = UIColor.darkGrayColor()
-        label.shadowColor = UIColor.whiteColor()
-        label.shadowOffset = CGSizeMake(0.0, 1.0);
-        label.font = UIFont.systemFontOfSize(14)
-        view.addSubview(label)
-        return view
+
+    private func buttonHeaderView(name: String, buttonTag: Int) -> UIView {
+        let sectionHeaderView = TableViewSectionButtonHeaderView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
+        sectionHeaderView.text = name
+        sectionHeaderView.btn.tag = buttonTag
+        sectionHeaderView.btn.addTarget(self, action: "addItem:", forControlEvents: UIControlEvents.TouchUpInside)
+        return sectionHeaderView
     }
 }

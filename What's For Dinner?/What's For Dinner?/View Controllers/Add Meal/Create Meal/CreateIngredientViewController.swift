@@ -42,31 +42,30 @@ class CreateIngredientViewController: UITableViewController, UIImagePickerContro
     //MARK: Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if section == 0 {
+            return 3
+        } else {
+            return 3
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Ingredient Information"
+        }  else if section == 1 {
+            return ""
         } else {
-            return "Unknown Section"
+            return "Unkown Section"
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        
-        if row == 0 {
-            return rowWithImage(indexPath)
-        } else if row == 1 {
-            return rowWithText("Name", indexPath: indexPath)
-        }
-        
-        return UITableViewCell()
+        let ingredientRowPicker = CreateIngredientRowPicker(tableView: self.tableView, ingrediet: ingredient)
+        return ingredientRowPicker.chooseRow(indexPath: indexPath)
     }
     
     //MARK: Image Picker Delegate
@@ -107,38 +106,5 @@ class CreateIngredientViewController: UITableViewController, UIImagePickerContro
         picker.allowsEditing = true
         picker.delegate = self
         presentViewController(picker, animated: true, completion: nil)
-    }
-    
-    //Private API
-    
-    private func rowWithImage(indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ImageViewCell", forIndexPath: indexPath)
-        
-        let imageView = cell.viewWithTag(103) as! UIImageView
-        
-        //TODO: Add Way to tak picture for the Ingredient
-        if let imgName = ingredient.imageName {
-            let path = getDocumentsDirectory().stringByAppendingPathComponent(imgName)
-            imageView.image = UIImage(contentsOfFile: path)
-        } else {
-            imageView.image = UIImage(imageLiteral: "first")
-        }
-        
-        return cell
-    }
-    
-    private func rowWithText(text: String, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath)
-        
-        let label = cell.viewWithTag(101) as! UILabel
-        label.text = text
-        
-        return cell
-    }
-    
-    private func getDocumentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
     }
 }

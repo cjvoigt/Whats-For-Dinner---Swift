@@ -19,7 +19,7 @@ enum IngredientKeys: String {
     case metaInformation = "metaInformation"
 }
 
-class Ingredient: NSObject, NSCoding {
+class Ingredient: NSObject, NSCoding, ImageObject {
     
     //MARK: Properties
     

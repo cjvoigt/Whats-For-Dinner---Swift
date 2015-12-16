@@ -22,3 +22,11 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    func getDocumentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+}

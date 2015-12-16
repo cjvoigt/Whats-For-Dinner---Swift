@@ -28,7 +28,7 @@ class RowPicker: NSObject, TableViewRowPicker {
         } else if row == 2 {
             return imageObjectRow(indexPath, imageObject: imageObject)
         } else if row == 3 {
-            return imageRow(indexPath, image: UIImage(imageLiteral: "first")!)
+            return imageRow(indexPath, image: UIImage(contentsOfFile: "first")!)
         } else if row == 4 {
             return switchRow(indexPath, titleLabel: "Title")
         } else {
@@ -66,7 +66,7 @@ class RowPicker: NSObject, TableViewRowPicker {
             let path = getDocumentsDirectory().stringByAppendingPathComponent(name)
             imageView.image = UIImage(contentsOfFile: path)
         } else {
-            imageView.image = UIImage(imageLiteral: "first")
+            imageView.image = UIImage(contentsOfFile: "first")
         }
         
         return cell

@@ -6,8 +6,6 @@
 //  Copyright © 2015 Camden Voigt. All rights reserved.
 //
 
-//TODO: Make this generic some how using a protocol
-
 import UIKit
 
 class CreateMealRowPicker: RowPicker {
@@ -65,5 +63,4 @@ class CreateMealRowPicker: RowPicker {
                 return ""
         }
     }
-    
 }
